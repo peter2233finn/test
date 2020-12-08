@@ -14,7 +14,7 @@ while true; do
         elif [[ "$a" == "r" ]]; then
                 ssh -vv root@192.168.1.2 -p 666 -i ~/.ssh/id_rsa.router
         elif [[ "$a" == "w" ]]; then
-                ./wipe.sh
+                ./.w.sh
         elif [[ "$a" == "e" ]]; then
                 break
         else
