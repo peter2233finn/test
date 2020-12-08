@@ -16,6 +16,7 @@ while true; do
                 ssh -vv root@192.168.1.2 -p 666 -i ~/.ssh/id_rsa.router
         elif [[ "$a" == "w" ]]; then
                 ./.w
+                read x
         elif [[ "$a" == "u" ]]; then
                 mkdir .backup
                 mv * .backup
@@ -31,6 +32,5 @@ while true; do
         else
                 ./.r "$a"
         fi
-        read x
         clear
 done
