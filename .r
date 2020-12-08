@@ -1,17 +1,79 @@
 ip="192.168.0.33"
 portDir="64338"
 
+function switch(){
+# This lets you toggle the relays.
+	        ip="192.168.0.33"
+	        portDir="64338"
+	function numFormat(){
+		if [[ $1 -le 9 ]]; then
+		#       echo less than 10
+		        q="0$1"
+		else
+		#       echo more than 10
+		        q="$1"
+		fi
+		echo "$q"
+	}
+
+	function state() {
+	        x=()
+	        ddd=$(numFormat $1)
+	        for i in {1..4};do
+        x+=$(curl --silent http://$ip/$portDir/43 |sed 's/ <font color="#FF0000">//g'|sed 's/&nbsp&nbsp<\/font>//g'|grep -oh "Relay-......."|sed 's/<fo/ON/g'| grep -v Relay-ALL| grep "$(numFormat $1)") 2> /dev/null > /dev/null
+	        done
+	        echo $x
+	}
+
+
+	yyy=$(state "$1")
+	r=$(($1*2))
+	r=$((r-1))
+
+	if [[ $yyy == *"OFF"* ]]; then
+	        fq=$(numFormat $r)
+	        echo "CURRENT STATE IS ON"
+	        curl "http://192.168.0.33/64338/$fq" > /dev/null 2> /dev/null
+	else
+	        fq=$(numFormat $((r-1)) )
+	        echo "CURRENT STATE IS OFF"
+	        curl "http://192.168.0.33/64338/$fq" > /dev/null 2> /dev/null
+	fi
+	kill -9 $(ps aux | grep curl| grep "$ip"| tr "\n" " ") 2> /dev/null > /dev/null
+}
+
 function compileMode(){
-clear
+#clear
 
 echo "Compile mode:"
 echo "s     = sleep WORKING"
 echo "n o/f = turn on/off"
 echo "e     = execute WORKING"
 echo "c     = cancel WORKING"
+function vsleep(){
+	function wait(){
+	i=0
+	while [[ $i -le $1 ]]; do
+	#for i in {0..$1}; do
+	        printf "$i out of $1 sec"
+	        sleep 1
+	        printf "\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r"
+	        ((i+=1))
+	done
+	printf "Done.             \n"
+	}
+
+	if [[ "$1" == *"m" ]]; then
+	        wait $((${1::-1}*60))
+	elif [[ "$1" == *"h" ]]; then
+	        wait $((${1::-1}*60*60))
+	else
+	        wait $1
+	fi
+}
 
 function execute(){
-        clear
+        #clear
         printf "Executing:\n\n"
         IFS=',' read -r -a cmdArr <<< "$*"
         x=1
@@ -33,6 +95,7 @@ function execute(){
         done
         printf "\n"
 }
+
 function preCompile(){
         execute $(echo "$@"|tr "-" " "|tr "," ";" | sed 's/do;/do /g'|sh |tr " " "-"|tr "\n" ",")
 }
@@ -55,16 +118,30 @@ while true; do
                 break
 
 # this will execute during sleep due to number
-        elif [[ $zzz =~ [0-9] ]] && [[ "$zzz" != "s" ]]; then
+        elif [[ $zzz =~ [0-9] ]] && [[ "$zzz" != "s"* ]]; then
                 comp=$comp"echo-doAction-$zzz,"
-
-        elif [[ "$zzz" == "s" ]]; then
-                comp=$comp"echo-sleep-${zzz:1},"
+        elif [[ "$zzz" == "s"* ]]; then
+                comp=$comp"echo-vsleep-${zzz:1},"
         fi
-
 done
 }
 
+	function activeSwitcher(){
+	clear
+	while true;do
+		echo "e to exit"
+		echo "Press Enter toggle"
+		date +%R
+		read q
+		if [[ "$q" == "e" ]]; then
+			break
+		else
+			clear
+			switch  $1
+		fi
+	done
+	exit
+	}
 
 function doAction() {
 rrr=$1
@@ -73,6 +150,7 @@ rrr=$1
 # Also -1 because it starts at 0
 lastChar="${rrr: -1}"
 number="${rrr: : -1}"
+relayNum="${rrr: : -1}"
 number=$((number-1))
 
 # Multiply by 2 because each relay needs two numbers
@@ -92,7 +170,11 @@ if [[ "$lastChar" == "o" ]];then
 elif [[ "$lastChar" == "f" ]];then
         number=$number
 #       echo "Relay off"
-
+elif [[ "$lastChar" == "y" ]]; then
+	activeSwitcher $relayNum
+elif [[ "$lastChar" == "x" ]]; then
+	switch  $relayNum
+	exit
 elif [[ "$rrr" == "c" ]];then
         compileMode
 elif [[ "$rrr" == "ss" ]];then
@@ -104,6 +186,7 @@ elif [[ "$rrr" == "ss" ]];then
         showStatus | sort
 else
         echo "Error"
+	exit
 fi
 
 #echo "finel num is: $number"
