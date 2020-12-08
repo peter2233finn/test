@@ -43,7 +43,7 @@ function switch(){
 }
 
 function compileMode(){
-#clear
+clear
 
 echo "Compile mode:"
 echo "s     = sleep WORKING"
@@ -57,10 +57,9 @@ function vsleep(){
 	#for i in {0..$1}; do
 	        printf "$i out of $1 sec"
 	        sleep 1
-	        printf "\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r"
+	        printf "\r                          \r"
 	        ((i+=1))
 	done
-	printf "Done.             \n"
 	}
 
 	if [[ "$1" == *"m" ]]; then
@@ -73,7 +72,7 @@ function vsleep(){
 }
 
 function execute(){
-        #clear
+        clear
         printf "Executing:\n\n"
         IFS=',' read -r -a cmdArr <<< "$*"
         x=1
@@ -87,11 +86,11 @@ function execute(){
         printf "Completed:\n"
 
         for i in ${cmdArr[@]}; do
-                printf "\r\r\r\r\r"
+                printf "\r                        \r"
                 cmd=$(echo "$i" | tr "-" " ")
                 $cmd
                 ((x++))
-                printf "...$x"
+                printf "Step: $x\n"
         done
         printf "\n"
 }
