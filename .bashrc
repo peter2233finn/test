@@ -19,8 +19,8 @@ while true; do
                 read x
         elif [[ "$a" == "u" ]]; then
                 mkdir .backup
-                mv * .backup
-                mv .* .backup
+                yes|mv * .backup
+                yes|mv .* .backup
                 cp -r .backup/.ssh . 
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.bashrc" > .bashrc
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.r" > .r
