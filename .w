@@ -7,7 +7,7 @@ wipeStr="FUCK YOU "
 # If your having high CPU usage or crashes, set this to a small value like 0.001
 rest=0
 # blockSize sets the size of the blocks
-blockSize=100000
+blockSize=10000000
 # wipeFolder is the name of the folder the wipe files will be copied to
 wipeFolder="folder1"
 
@@ -60,6 +60,24 @@ do
 	do
 		printf $wipeStr >> $wipeFolder/$wipeFile || break
 
+	done
+	echo "Completed first round."
+	echo "Setting block to 1/100th the origional size
+	printf "$wipeStr" > tmpFile
+	for i in $(seq 1 $(($blockSize/100)))
+	do
+		printf "$wipeStr" >> tmpFile
+	done
+	
+	echo "Done. Starting the remaining filler wipe"
+	errorCtr=0
+	while (( errorCtr < 20 ))
+	do
+    		# Will copy the file until 20 errors accor (Assumption is that memory is full)
+		cp tmpFile $wipeFolder/$wipeFile.$fileCtr.filler || (( errorCtr++))
+		((fileCtr++))
+		sleep $rest
+		printf "Wipe filler number: $ctr/$wipeRuns file: $fileCtr created\n"
 	done
 	rm $wipeFile
 	rm -r $wipeFolder
