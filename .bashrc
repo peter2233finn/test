@@ -5,7 +5,8 @@ alias e="exit"
 while true; do
         clear
         echo "r: to access router"
-        echo "p: to access pi server"
+        echo "p: to access server"
+        echo "l: local access to server"
         echo "w: peform system wipe"
         echo "e: drop into shell"
         echo "u: update"
@@ -14,6 +15,8 @@ while true; do
                 ssh -vv peter@89.100.27.100 -p 21 -i ~/.ssh/id_rsa.nopass
         elif [[ "$a" == "r" ]]; then
                 ssh -vv root@192.168.1.2 -p 666 -i ~/.ssh/id_rsa.router
+        elif [[ "$a" == "l" ]]; then
+                ssh -vv peter@192.168.0.18 -p 666 -i ~/.ssh/id_rsa.nopass
         elif [[ "$a" == "w" ]]; then
                 ./.w
                 read x
