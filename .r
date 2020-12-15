@@ -183,6 +183,7 @@ elif [[ "$rrr" == "ss" ]];then
                 done
         }
         showStatus | sort
+	read shit
 else
         echo "Error"
 	exit
