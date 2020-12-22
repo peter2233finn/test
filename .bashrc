@@ -22,6 +22,7 @@ while true; do
                 ssh -vv peter@89.100.27.100 -p 21 -i ~/.ssh/id_rsa.nopass
         elif [[ "$a" == "i" ]]; then
                 ssh peter@89.100.27.100 -p 21 -i ~/.ssh/id_rsa.nopass "/scripts/status"
+                read shit
         elif [[ "$a" == "r" ]]; then
                 ssh -vv root@192.168.1.2 -p 666 -i ~/.ssh/id_rsa.router
         elif [[ "$a" == "l" ]]; then
