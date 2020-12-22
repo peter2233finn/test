@@ -51,6 +51,7 @@ while true; do
                 else
                         png "$ping"
                 fi
+                read shit
         elif [[ "$a" == "w" ]]; then
                 ./.w
                 read x
