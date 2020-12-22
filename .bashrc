@@ -40,7 +40,8 @@ while true; do
                 echo "r: ISP router"
                 read ping
                 if [[ "$ping" == "" ]]; then
-                        png 8.8.8.8 ||(echo failed && png $ispr)||(echo failed && ping $router)
+                        png 8.8.8.8 ||(echo "failed to react google DNS" && png $ispr)||(echo "failed to reach $ispr" && ping $router)\
+                        || echo "failed to reach $router. conn down"
                 elif [[ "$ping" == "s" ]]; then
                         png $lserver
                 elif [[ "$ping" == "rr" ]]; then
