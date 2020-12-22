@@ -9,6 +9,8 @@ while true; do
         echo "l: local access to server"
         echo "w: peform system wipe"
         echo "e: drop into shell"
+        echo "x: toggle"
+
         echo "u: update"
         read a
         if [[ "$a" == "p" ]]; then
