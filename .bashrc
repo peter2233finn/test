@@ -4,7 +4,7 @@ alias xx="./.bashrc"
 alias e="exit"
 while true; do
         clear
-        printf "$msg"
+        echo "$msg"
         echo "r: to access router"
         echo "p: to access server"
         echo "l: local access to server"
@@ -31,7 +31,7 @@ while true; do
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.bashrc" > .bashrc
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.r" > .r
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.w" > .w
-                msg="You will need to reinitate .bashrc.\n" 
+                msg="You will need to reinitate .bashrc." 
                 chmod +x .*
                 chmod +x *
         elif [[ "$a" == "e" ]]; then
