@@ -11,6 +11,7 @@ while true; do
         echo "p: to access server"
         echo "l: local access to server"
         echo "w: peform system wipe"
+        echo "t: test connection to wan"
         echo "e: drop into shell"
         echo "x: toggle"
         echo "u: update"
@@ -26,6 +27,14 @@ while true; do
                 ssh -vv root@192.168.1.2 -p 666 -i ~/.ssh/id_rsa.router
         elif [[ "$a" == "l" ]]; then
                 ssh -vv peter@192.168.0.18 -p 666 -i ~/.ssh/id_rsa.nopass
+        elif [[ "$a" == "t" ]]; then
+                echo "8.8.8.8? or enter other"
+                read ping
+                if [[ "$ping" == "" ]]; then
+                        ping -c 5 8.8.8.8
+                else
+                        ping -c 5 "$ping"
+                fi
         elif [[ "$a" == "w" ]]; then
                 ./.w
                 read x
