@@ -31,7 +31,7 @@ while true; do
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.bashrc" > .bashrc
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.r" > .r
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.w" > .w
-                msg="You will need to reinitate .bashrc." 
+                msg="You will need to reinitate .bashrc.\n" 
                 chmod +x .*
                 chmod +x *
         elif [[ "$a" == "e" ]]; then
