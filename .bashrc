@@ -32,7 +32,7 @@ while true; do
                 ssh -vv peter@192.168.0.18 -p 666 -i ~/.ssh/id_rsa.nopass
         elif [[ "$a" == "t" ]]; then
                 function png(){
-                        ping -c 5 "$1"
+                        ping -W 1 -c 5 "$1" | egrep  "PING|bytes|packet loss"
                 }
                 echo "8.8.8.8? or enter other"
                 echo "s: server"
@@ -40,7 +40,7 @@ while true; do
                 echo "r: ISP router"
                 read ping
                 if [[ "$ping" == "" ]]; then
-                        png 8.8.8.8
+                        png 8.8.8.8 ||(echo failed && png $ispr)||(echo failed && ping $router)
                 elif [[ "$ping" == "s" ]]; then
                         png $lserver
                 elif [[ "$ping" == "rr" ]]; then
