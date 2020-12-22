@@ -7,7 +7,6 @@ alias fu="curl "https://raw.githubusercontent.com/peter2233finn/test/main/.bashr
 while true; do
         clear
         echo "$msg"
-        echo " "
         echo "r: to access router"
         echo "p: to access server"
         echo "l: local access to server"
