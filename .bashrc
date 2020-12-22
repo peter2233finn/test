@@ -19,7 +19,7 @@ while true; do
         if [[ "$a" == "p" ]]; then
                 ssh -vv peter@89.100.27.100 -p 21 -i ~/.ssh/id_rsa.nopass
         if [[ "$a" == "i" ]]; then
-                ssh -vv peter@89.100.27.100 -p 21 -i ~/.ssh/id_rsa.nopass
+                ssh peter@89.100.27.100 -p 21 -i ~/.ssh/id_rsa.nopass "/scripts/status"
         elif [[ "$a" == "r" ]]; then
                 ssh -vv root@192.168.1.2 -p 666 -i ~/.ssh/id_rsa.router
         elif [[ "$a" == "l" ]]; then
