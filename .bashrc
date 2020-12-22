@@ -4,15 +4,16 @@ alias xx="./.bashrc"
 alias e="exit"
 while true; do
         clear
-        echo "$msg \n\n\n"
+        echo "$msg"
+        echo ""
         echo "r: to access router"
         echo "p: to access server"
         echo "l: local access to server"
         echo "w: peform system wipe"
         echo "e: drop into shell"
         echo "x: toggle"
-
         echo "u: update"
+        
         read a
         if [[ "$a" == "p" ]]; then
                 ssh -vv peter@89.100.27.100 -p 21 -i ~/.ssh/id_rsa.nopass
