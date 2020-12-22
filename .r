@@ -175,8 +175,8 @@ elif [[ "$rrr" == "x" ]]; then
 	echo "Toggle mode. Relay num?"
 	read rnum
 	while [[ "$shit" != "e" ]]; do
-		read shit
 		switch  $rnum
+		read shit
 	done
 	
 elif [[ "$lastChar" == "x" ]]; then
