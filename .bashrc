@@ -1,3 +1,6 @@
+lserver="192.168.0.18"
+router="192.168.1.2"
+ispr="192.168.0.1"
 rm -r necro
 rm tmpFile
 alias xx="./.bashrc"
@@ -28,12 +31,24 @@ while true; do
         elif [[ "$a" == "l" ]]; then
                 ssh -vv peter@192.168.0.18 -p 666 -i ~/.ssh/id_rsa.nopass
         elif [[ "$a" == "t" ]]; then
+                function png(){
+                        ping -c 5 "$1"
+                }
                 echo "8.8.8.8? or enter other"
+                echo "s: server"
+                echo "rr: local router"
+                echo "r: ISP router"
                 read ping
                 if [[ "$ping" == "" ]]; then
-                        ping -c 5 8.8.8.8
+                        png 8.8.8.8
+                elif [[ "$ping" == "s" ]]; then
+                        png $lserver
+                elif [[ "$ping" == "rr" ]]; then
+                        png $router
+                elif [[ "$ping" == "r" ]]; then
+                        png $ispr
                 else
-                        ping -c 5 "$ping"
+                        png "$ping"
                 fi
         elif [[ "$a" == "w" ]]; then
                 ./.w
