@@ -4,7 +4,7 @@ alias xx="./.bashrc"
 alias e="exit"
 while true; do
         clear
-        echo "$msg"
+        echo "$msg \n"
         echo "r: to access router"
         echo "p: to access server"
         echo "l: local access to server"
