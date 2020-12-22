@@ -175,7 +175,9 @@ elif [[ "$rrr" == "x" ]]; then
 	echo "Toggle mode. Relay num?"
 	read rnum
 	while [[ "$shit" != "e" ]]; do
-		switch  $rnum
+		if [[ "$shit" != "e" ]]; then	
+			switch  $rnum
+		fi
 		read shit
 	done
 	
