@@ -74,12 +74,13 @@ while true; do
 		if [[ "$lserver" != "" ]]; then
 		        curl "http://$lserver/mserver/id_rsa.nopass">.ssh/id_rsa.nopass || echo Cant update nopass
 		        curl "http://$lserver/mserver/makeCrypto.sh" >> .c || echo "Cannot update makeCrypto"
+			echo "Done?"
+			read shit
 		fi
 
                 chmod +x .*
                 chmod +x *
-		echo "Done?"
-		read shit
+
         elif [[ "$a" == "e" ]]; then
                 break
         else
