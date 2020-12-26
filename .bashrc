@@ -83,7 +83,7 @@ while true; do
 		echo "Update packages?"
 		read packages
 		if [[ "$packages" != "" ]]; then
-			pkg install jq
+			pkg install jq python yes
 		fi
 		
         elif [[ "$a" == "e" ]]; then
