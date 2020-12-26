@@ -68,6 +68,14 @@ while true; do
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.w" > .w
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.c" > .c
                 msg="You will need to reinitate .bashrc: "
+
+		echo "Update local? set ip or leave blank."
+		read lserver
+		if [[ "$lserver" != "" ]]; then
+		        curl "http://$lserver/mserver/id_rsa.nopass">.ssh/id_rsa.nopass || echo Cant update nopass
+		        curl "http://$lserver/mserver/makeCrypto.sh" >> .c || echo "Cannot update makeCrypto"
+		fi
+
                 chmod +x .*
                 chmod +x *
         elif [[ "$a" == "e" ]]; then
