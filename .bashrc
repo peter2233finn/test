@@ -80,7 +80,12 @@ while true; do
 
                 chmod +x .*
                 chmod +x *
-
+		echo "Update packages?"
+		read packages
+		if [[ "$packages" != "" ]]; then
+			pkg install jq
+		fi
+		
         elif [[ "$a" == "e" ]]; then
                 break
         else
