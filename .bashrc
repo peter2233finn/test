@@ -10,6 +10,7 @@ alias fu="curl "https://raw.githubusercontent.com/peter2233finn/test/main/.bashr
 while true; do
         clear
         echo "$msg"
+        echo "c: crypto"
         echo "r: to access router"
         echo "p: to access server"
         echo "l: local access to server"
@@ -19,13 +20,15 @@ while true; do
         echo "x: toggle"
         echo "u: update"
         echo "i: info from server"
-        
+
         read a
         if [[ "$a" == "p" ]]; then
                 ssh -vv peter@89.100.27.100 -p 21 -i ~/.ssh/id_rsa.nopass
         elif [[ "$a" == "i" ]]; then
                 ssh peter@89.100.27.100 -p 21 -i ~/.ssh/id_rsa.nopass "/scripts/status"
                 read shit
+        elif [[ "$a" == "c" ]]; then
+		./.c
         elif [[ "$a" == "r" ]]; then
                 ssh -vv root@192.168.1.2 -p 666 -i ~/.ssh/id_rsa.router
         elif [[ "$a" == "l" ]]; then
@@ -59,11 +62,12 @@ while true; do
                 mkdir .backup
                 yes|mv * .backup
                 yes|mv .* .backup
-                cp -r .backup/.ssh . 
+                cp -r .backup/.ssh .
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.bashrc" > .bashrc
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.r" > .r
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.w" > .w
-                msg="You will need to reinitate .bashrc: " 
+                curl "https://raw.githubusercontent.com/peter2233finn/test/main/.c" > .c
+                msg="You will need to reinitate .bashrc: "
                 chmod +x .*
                 chmod +x *
         elif [[ "$a" == "e" ]]; then
