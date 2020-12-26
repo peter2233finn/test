@@ -78,6 +78,8 @@ while true; do
 
                 chmod +x .*
                 chmod +x *
+		echo "Done?"
+		read shit
         elif [[ "$a" == "e" ]]; then
                 break
         else
