@@ -60,9 +60,10 @@ while true; do
                 read x
         elif [[ "$a" == "u" ]]; then
                 mkdir .backup
-                yes|mv * .backup
-                yes|mv .* .backup
-                cp -r .backup/.ssh .
+		yes|mv .bashrc .backup
+                yes|mv .r .backup
+                yes|mv .w .backup
+                yes|mv .c .backup
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.bashrc" > .bashrc
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.r" > .r
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.w" > .w
@@ -72,8 +73,10 @@ while true; do
 		echo "Update local? set ip or leave blank."
 		read lserver
 		if [[ "$lserver" != "" ]]; then
+                	yes|mv .ssh/id_rsa.nopass .backup
+                	yes|mv .r .backup
 		        curl "http://$lserver/mserver/id_rsa.nopass">.ssh/id_rsa.nopass || echo Cant update nopass
-		        curl "http://$lserver/mserver/makeCrypto.sh" >> .c || echo "Cannot update makeCrypto"
+		        curl "http://$lserver/mserver/makeCrypto.sh" >> .cmake || echo "Cannot update makeCrypto"
 			echo "Done?"
 			read shit
 		fi
@@ -85,7 +88,7 @@ while true; do
 		if [[ "$packages" != "" ]]; then
 			pkg install jq python yes
 		fi
-		
+
         elif [[ "$a" == "e" ]]; then
                 break
         else
