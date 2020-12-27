@@ -16,3 +16,12 @@ done #|sort -h -r |column -t -s "|"
 echo ""
 echo "========================="
 echo "total: $total"
+if [ -f ".mcrypto" ]; then
+        echo "update .crypto file?"
+        read xxx
+        if [[ "$xxx" == "y" ]]; then
+                ./.mcrypto
+        fi
+else
+        echo "No mserver update. Unable to update crypto file."
+fi
