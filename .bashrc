@@ -11,9 +11,10 @@ while true; do
         clear
         echo "$msg"
         echo "c: crypto"
-        echo "r: to access router"
-        echo "p: to access server"
-        echo "l: local access to server"
+        echo "r: access router"
+        echo "l: access local server"
+        echo "p: access server"
+        echo "o: access TV"
         echo "w: peform system wipe"
         echo "t: test connection to wan"
         echo "e: drop into shell"
@@ -23,27 +24,29 @@ while true; do
 
         read a
         if [[ "$a" == "p" ]]; then
-                ssh -vv peter@89.100.27.100 -p 21 -i ~/.ssh/id_rsa.nopass
+                ssh -vv peter@89.100.27.100 -p 65021 -i ~/.ssh/id_rsa.nopass
         elif [[ "$a" == "i" ]]; then
-                ssh peter@89.100.27.100 -p 21 -i ~/.ssh/id_rsa.nopass "/scripts/status"
+                ssh peter@89.100.27.100 -p 65021 -i ~/.ssh/id_rsa.nopass "/scripts/status"
                 read shit
         elif [[ "$a" == "c" ]]; then
-		./.c
+                ./.c
         elif [[ "$a" == "r" ]]; then
                 ssh -vv root@192.168.1.2 -p 666 -i ~/.ssh/id_rsa.router
+        elif [[ "$a" == "o" ]]; then
+                ssh -vv 192.168.1.161 -p 22222 -i ~/.ssh/id_rsa.router
         elif [[ "$a" == "l" ]]; then
                 ssh -vv peter@192.168.0.18 -p 666 -i ~/.ssh/id_rsa.nopass
         elif [[ "$a" == "t" ]]; then
                 function png(){
                         ping -W 1 -c 5 "$1" | egrep  "PING|bytes|packet loss"
                 }
-                echo "8.8.8.8? or enter other"
+                echo "1.1.1.1? or enter other"
                 echo "s: server"
                 echo "rr: local router"
                 echo "r: ISP router"
                 read ping
                 if [[ "$ping" == "" ]]; then
-                        png 8.8.8.8 ||(echo "failed to react google DNS" && png $ispr)||(echo "failed to reach $ispr" && ping $router)\
+                        png 1.1.1.1 ||(echo "failed to react google DNS" && png $ispr)||(echo "failed to reach $ispr" && ping $router)\
                         || echo "failed to reach $router. conn down"
                 elif [[ "$ping" == "s" ]]; then
                         png $lserver
@@ -60,7 +63,7 @@ while true; do
                 read x
         elif [[ "$a" == "u" ]]; then
                 mkdir .backup
-		yes|mv .bashrc .backup
+                yes|mv .bashrc .backup
                 yes|mv .r .backup
                 yes|mv .w .backup
                 yes|mv .c .backup
@@ -70,24 +73,24 @@ while true; do
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.c" > .c
                 msg="You will need to reinitate .bashrc: "
 
-		echo "Update local? set ip or leave blank."
-		read lserver
-		if [[ "$lserver" != "" ]]; then
-                	yes|mv .ssh/id_rsa.nopass .backup
-                	yes|mv .r .backup
-		        curl "http://$lserver/mserver/id_rsa.nopass">.ssh/id_rsa.nopass || echo Cant update nopass
-		        curl "http://$lserver/mserver/makeCrypto.sh" >> .cmake || echo "Cannot update makeCrypto"
-			echo "Done?"
-			read shit
-		fi
+                echo "Update local? set ip or leave blank."
+                read lserver
+                if [[ "$lserver" != "" ]]; then
+                        yes|mv .ssh/id_rsa.nopass .backup
+                        yes|mv .r .backup
+                        curl "http://$lserver/mserver/id_rsa.nopass">.ssh/id_rsa.nopass || echo Cant update nopass
+                        curl "http://$lserver/mserver/makeCrypto.sh" >> .cmake || echo "Cannot update makeCrypto"
+                        echo "Done?"
+                        read shit
+                fi
 
                 chmod +x .*
                 chmod +x *
-		echo "Update packages?"
-		read packages
-		if [[ "$packages" != "" ]]; then
-			pkg install jq python yes
-		fi
+                echo "Update packages?"
+                read packages
+                if [[ "$packages" != "" ]]; then
+                        pkg install jq python yes
+                fi
 
         elif [[ "$a" == "e" ]]; then
                 break
