@@ -172,8 +172,10 @@ elif [[ "$lastChar" == "f" ]];then
 elif [[ "$lastChar" == "y" ]]; then
 	activeSwitcher $relayNum
 elif [[ "$rrr" == "x" ]]; then
+	clear
 	echo "Toggle mode. Relay num?"
 	read rnum
+	clear
 	while [[ "$shit" != "e" ]]; do
 		if [[ "$shit" == "" ]]; then	
 			switch  $rnum
