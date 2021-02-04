@@ -32,11 +32,11 @@ function switch(){
 
 	if [[ $yyy == *"OFF"* ]]; then
 	        fq=$(numFormat $r)
-	        echo "CURRENT STATE IS ON"
+	        printf "CURRENT STATE IS ON"
 	        curl "http://192.168.0.33/64338/$fq" > /dev/null 2> /dev/null
 	else
 	        fq=$(numFormat $((r-1)) )
-	        echo "CURRENT STATE IS OFF"
+	        printf "CURRENT STATE IS OFF"
 	        curl "http://192.168.0.33/64338/$fq" > /dev/null 2> /dev/null
 	fi
 	kill -9 $(ps aux | grep curl| grep "$ip"| tr "\n" " ") 2> /dev/null > /dev/null
