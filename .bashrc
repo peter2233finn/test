@@ -30,6 +30,7 @@ while true; do
                 read shit
         elif [[ "$a" == "c" ]]; then
                 ./.c
+                read shit          
         elif [[ "$a" == "r" ]]; then
                 ssh -vv root@192.168.1.2 -p 666 -i ~/.ssh/id_rsa.router
         elif [[ "$a" == "o" ]]; then
