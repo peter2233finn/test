@@ -10,7 +10,7 @@ alias fu="curl "https://raw.githubusercontent.com/peter2233finn/test/main/.bashr
 while true; do
         clear
         echo "$msg"
-        echo "c: crypto"
+        echo "x: crypto"
         echo "r: access router"
         echo "l: access local server"
         echo "p: access server"
@@ -21,6 +21,7 @@ while true; do
         echo "x: toggle"
         echo "u: update"
         echo "i: info from server"
+	echo "Slias 'fu' to force update from github"
 
         read a
         if [[ "$a" == "p" ]]; then
@@ -28,9 +29,9 @@ while true; do
         elif [[ "$a" == "i" ]]; then
                 ssh peter@89.100.27.100 -p 65021 -i ~/.ssh/id_rsa.nopass "/scripts/status"
                 read shit
-        elif [[ "$a" == "c" ]]; then
+        elif [[ "$a" == "x" ]]; then
                 ./.c
-                read shit          
+                read shit
         elif [[ "$a" == "r" ]]; then
                 ssh -vv root@192.168.1.2 -p 666 -i ~/.ssh/id_rsa.router
         elif [[ "$a" == "o" ]]; then
@@ -63,11 +64,12 @@ while true; do
                 ./.w
                 read x
         elif [[ "$a" == "u" ]]; then
+                rm -r .backup
                 mkdir .backup
-                yes|mv .bashrc .backup
-                yes|mv .r .backup
-                yes|mv .w .backup
-                yes|mv .c .backup
+                cp .bashrc .backup
+                cp .r .backup
+                cp .w .backup
+                cp .c .backup
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.bashrc" > .bashrc
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.r" > .r
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.w" > .w
@@ -77,10 +79,10 @@ while true; do
                 echo "Update local? set ip or leave blank."
                 read lserver
                 if [[ "$lserver" != "" ]]; then
-                        yes|mv .ssh/id_rsa.nopass .backup
-                        yes|mv .r .backup
-                        curl "http://$lserver/mserver/id_rsa.nopass">.ssh/id_rsa.nopass || echo Cant update nopass
-                        curl "http://$lserver/mserver/makeCrypto.sh" >> .cmake || echo "Cannot update makeCrypto"
+                        cp .ssh/id_rsa.nopass .backup
+                        cp .r .backup
+                        curl "http://$lserver/mserver/id_rsa.nopass" >.ssh/id_rsa.nopass || echo Cant update nopass
+                        curl "http://$lserver/mserver/makeCrypto.sh" > .cmake || echo "Cannot update makeCrypto"
                         echo "Done?"
                         read shit
                 fi
