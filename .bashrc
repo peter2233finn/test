@@ -65,16 +65,28 @@ while true; do
                 ./.w
                 read x
         elif [[ "$a" == "u" ]]; then
+
+		# only remove origional files if update was a success
+		function checkUpdateSuccess(){
+        	for file in "."*".new"; do
+        	        if [ -s "$file" ]; then
+        	                echo "Success: $file"
+        	                mv "$file" "$(echo $file | sed 's/.new//g')"
+        	        fi
+        	done
+		}
+		
                 rm -r .backup
                 mkdir .backup
                 cp .bashrc .backup
                 cp .r .backup
                 cp .w .backup
                 cp .c .backup
-                curl "https://raw.githubusercontent.com/peter2233finn/test/main/.bashrc" > .bashrc
-                curl "https://raw.githubusercontent.com/peter2233finn/test/main/.r" > .r
-                curl "https://raw.githubusercontent.com/peter2233finn/test/main/.w" > .w
-                curl "https://raw.githubusercontent.com/peter2233finn/test/main/.c" > .c
+                curl "https://raw.githubusercontent.com/peter2233finn/test/main/.bashrc" > .bashrc.new
+                curl "https://raw.githubusercontent.com/peter2233finn/test/main/.r" > .r.new
+                curl "https://raw.githubusercontent.com/peter2233finn/test/main/.w" > .w.new
+                curl "https://raw.githubusercontent.com/peter2233finn/test/main/.c" > .c.new
+		checkUpdateSuccess
                 msg="You will need to reinitate .bashrc: "
 
                 echo "Update local? set ip or leave blank."
