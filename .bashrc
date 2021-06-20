@@ -1,6 +1,7 @@
 lserver="192.168.0.18"
 router="192.168.1.2"
 ispr="192.168.0.1"
+tv="192.168.1.163"
 rm -r necro
 rm tmpFile
 alias xx="./.bashrc"
@@ -36,7 +37,7 @@ while true; do
         elif [[ "$a" == "r" ]]; then
                 ssh -vv root@192.168.1.2 -p 666 -i ~/.ssh/id_rsa.router
         elif [[ "$a" == "o" ]]; then
-                ssh -vv 192.168.1.161 -p 22222 -i ~/.ssh/id_rsa.router
+                ssh -vv $tv -p 22222 -i ~/.ssh/id_rsa.router
         elif [[ "$a" == "l" ]]; then
                 ssh -vv peter@192.168.0.18 -p 666 -i ~/.ssh/id_rsa.nopass
         elif [[ "$a" == "t" ]]; then
