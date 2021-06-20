@@ -7,7 +7,7 @@ alias xx="./.bashrc"
 alias e="exit"
 echo "ERROR: use fu to force update"
 alias fu="curl "https://raw.githubusercontent.com/peter2233finn/test/main/.bashrc" > .bashrc"
-./.r "7f"
+./.r "7f" &
 while true; do
         clear
         echo "$msg"
