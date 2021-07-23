@@ -83,10 +83,12 @@ while true; do
                 cp .r .backup
                 cp .w .backup
                 cp .c .backup
+		cp .b .backup
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.bashrc" > .bashrc.new
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.r" > .r.new
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.w" > .w.new
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.c" > .c.new
+		curl "https://raw.githubusercontent.com/peter2233finn/test/main/.b" > .b.new
 		checkUpdateSuccess
                 msg="You will need to reinitate .bashrc: "
 
