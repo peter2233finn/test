@@ -21,6 +21,7 @@ while true; do
         echo "t: test connection to wan"
         echo "e: drop into shell"
         echo "x: toggle"
+	echo "b: blocker"
         echo "u: update"
         echo "i: info from server"
 	echo "Slias 'fu' to force update from github"
@@ -40,6 +41,8 @@ while true; do
                 ssh -vv $tv -p 22222 -i ~/.ssh/id_rsa.router
         elif [[ "$a" == "l" ]]; then
                 ssh -vv peter@192.168.0.18 -p 666 -i ~/.ssh/id_rsa.nopass
+	elif [[ "$a" == "b" ]]; then
+                ./.b
         elif [[ "$a" == "t" ]]; then
                 function png(){
                         ping -W 1 -c 5 "$1" | egrep  "PING|bytes|packet loss"
