@@ -3,7 +3,7 @@ tmp1="dhcpHosts"
 tmp2="actionHost"
 tmp3="allMacs"
 function rexe(){
-	ssh root@192.168.1.2 -p 666 -i ~/.ssh/id_rsa.router "$*"
+	ssh root@192.168.1.2 -p 666 -i .ssh/id_rsa.nopass "$*"
 
 }
 
