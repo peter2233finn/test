@@ -2,6 +2,10 @@ lserver="192.168.0.18"
 router="192.168.1.2"
 ispr="192.168.0.1"
 tv="192.168.1.163"
+extRouter="192.168.0.115"
+tvp1="65133"
+tvp2="65132"
+
 rm -r necro
 rm tmpFile
 alias xx="./.bashrc"
@@ -38,7 +42,10 @@ while true; do
         elif [[ "$a" == "r" ]]; then
                 ssh -vv root@192.168.1.2 -p 666 -i ~/.ssh/id_rsa.router
         elif [[ "$a" == "o" ]]; then
+		ssh -o ConnectTimeout=2 $extRouter -p $tvp1 -i ~/.ssh/id_rsa.nopass
+		ssh -o ConnectTimeout=4 $extRouter -p $tvp2 -i ~/.ssh/id_rsa.nopass
                 ssh -vv $tv -p 22222 -i ~/.ssh/id_rsa.router
+		
         elif [[ "$a" == "l" ]]; then
                 ssh -vv peter@192.168.0.18 -p 666 -i ~/.ssh/id_rsa.nopass
 	elif [[ "$a" == "b" ]]; then
