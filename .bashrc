@@ -42,8 +42,8 @@ while true; do
         elif [[ "$a" == "r" ]]; then
                 ssh -vv root@192.168.1.2 -p 666 -i ~/.ssh/id_rsa.router
         elif [[ "$a" == "o" ]]; then
-		ssh -o ConnectTimeout=2 $extRouter -p $tvp1 -i ~/.ssh/id_rsa.nopass
-		ssh -o ConnectTimeout=4 $extRouter -p $tvp2 -i ~/.ssh/id_rsa.nopass
+		ssh -o ConnectTimeout=2 $extRouter -p $tvp1 -i ~/.ssh/id_rsa.router
+		ssh -o ConnectTimeout=4 $extRouter -p $tvp2 -i ~/.ssh/id_rsa.router
                 ssh -vv $tv -p 22222 -i ~/.ssh/id_rsa.router
 		
         elif [[ "$a" == "l" ]]; then
