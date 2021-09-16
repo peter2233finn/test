@@ -9,7 +9,7 @@ echo "finding correct folder..."
 ssh "$user"@"$ip" -i "$keyFile" -p "$port" "$(cat .vc)"
 #Break=$(ssh "$user"@"$ip" -i "$keyFile" -p "$port" "lsblk|grep '/ff'" || exit)
 [ "$Break" = "" ] && echo exit 5
-ssh $user@$ip -i $keyFile "lsblk"
+ssh $user@$ip -i $keyFile -p "$port" "lsblk"
 Continue?
 read shit
 if [[ "$shit" != "" ]]; then
