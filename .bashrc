@@ -28,6 +28,7 @@ while true; do
 	echo "b: blocker"
         echo "u: update"
         echo "i: info from server"
+	echo "z: backup"
 	echo "Slias 'fu' to force update from github"
 
         read a
@@ -36,6 +37,8 @@ while true; do
         elif [[ "$a" == "i" ]]; then
                 ssh peter@89.100.27.100 -p 65021 -i ~/.ssh/id_rsa.nopass "/scripts/status"
                 read shit
+	elif [[ "$a" == "z" ]]; then
+		./.s
         elif [[ "$a" == "x" ]]; then
                 ./.c
                 read shit
