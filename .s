@@ -21,6 +21,7 @@ function progress(){
         echo -n "$1 out of $2 files processed."
 }
 
+exit
 containsElement () {
   local e match="$1"
   shift
