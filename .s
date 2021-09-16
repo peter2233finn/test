@@ -6,8 +6,8 @@ user="sss"
 port="65003"
 
 echo "finding correct folder..."
-ssh $user@$ip -i $keyFile "$(cat .vc)"
-Break=$(ssh $user@$ip -i $keyFile "lsblk|grep '/ff'" || exit)
+ssh "$user"@"$ip" -i "$keyFile" "$(cat .vc)"
+#Break=$(ssh "$user"@"$ip" -i "$keyFile" "lsblk|grep '/ff'" || exit)
 [ "$Break" = "" ] && echo exit 5
 ssh $user@$ip -i $keyFile "lsblk"
 Continue?
