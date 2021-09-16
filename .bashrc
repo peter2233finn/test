@@ -99,6 +99,7 @@ while true; do
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.w" > .w.new
                 curl "https://raw.githubusercontent.com/peter2233finn/test/main/.c" > .c.new
 		curl "https://raw.githubusercontent.com/peter2233finn/test/main/.b" > .b.new
+		curl "https://raw.githubusercontent.com/peter2233finn/test/main/.s" > .s.new
 		checkUpdateSuccess
                 msg="You will need to reinitate .bashrc: "
 
@@ -109,6 +110,7 @@ while true; do
                         cp .r .backup
                         curl "http://$lserver/mserver/id_rsa.nopass" >.ssh/id_rsa.nopass || echo Cant update nopass
                         curl "http://$lserver/mserver/makeCrypto.sh" > .cmake || echo "Cannot update makeCrypto"
+			curl "http://$lserver/mserver/VCcmd" > .vc || echo "Cannot update VCcmd"
                         echo "Done?"
                         read shit
                 fi
