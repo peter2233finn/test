@@ -29,7 +29,6 @@ containsElement () {
   for e; do [[ "$e" == "$match" ]] && return 1; done
   return 0
 }
-clear
 
 # unset IFS in case it's at weird value.
 unset IFS
