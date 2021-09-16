@@ -6,11 +6,11 @@ user="sss"
 port="65003"
 
 echo "finding correct folder..."
-ssh "$user"@"$ip" -i "$keyFile" -p "$port" "$(cat .vc)"
-#Break=$(ssh "$user"@"$ip" -i "$keyFile" -p "$port" "lsblk|grep '/ff'" || exit)
+ssh "$user"@"$ip" -i "$keyFile" -p $port "$(cat .vc)"
+#Break=$(ssh "$user"@"$ip" -i "$keyFile" -p $port "lsblk|grep '/ff'" || exit)
 
 [ "$Break" = "" ] && echo exit 5
-ssh "$user"@"$ip" -i "$keyFile" -p "$port" "lsblk"
+ssh "$user"@"$ip" -i "$keyFile" -p $port "lsblk"
 
 Continue?
 read shit
