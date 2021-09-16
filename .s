@@ -9,14 +9,12 @@ echo "finding correct folder..."
 ssh $user@$ip -i $keyFile "$(cat .vc)"
 Break=$(ssh $user@$ip -i $keyFile "lsblk|grep '/ff'" || exit)
 [ "$Break" = "" ] && echo exit 5
-
-
-remoteSync="/ff/phone/"
-localSync="/storage/emulated/0/"
-ip="192.168.0.115"
-keyFile=".ssh/id_rsa.mainserver"
-user="sss"
-port="65003"
+ssh $user@$ip -i $keyFile "lsblk"
+Continue?
+read shit
+if [[ "$shit" != "" ]]; then
+exit
+fi
 
 function progress(){
         printf "\r"
