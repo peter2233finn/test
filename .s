@@ -1,3 +1,8 @@
+ssh sss@192.168.1.189 -i .ssh/id_rsa.mainserver "$(cat .vc)"
+Break=$(ssh sss@192.168.1.189 -i .ssh/id_rsa.mainserver "lsblk|grep '/ff'")
+[ "$Break" = "" ] && echo exit 5
+
+
 remoteSync="/ff/phone/"
 localSync="/storage/emulated/0/"
 ip="192.168.0.115"
