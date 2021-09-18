@@ -9,13 +9,12 @@ echo "finding correct folder..."
 ssh "$user"@"$ip" -i "$keyFile" -p $port "sh /scripts/phoneBackup.sh $(cat .vc)"
 #Break=$(ssh "$user"@"$ip" -i "$keyFile" -p $port "lsblk|grep '/ff'" || exit)
 
-[ "$Break" = "" ] && echo exit 5
 ssh "$user"@"$ip" -i "$keyFile" -p $port "lsblk"
 
 echo Continue?
 read shit
 if [[ "$shit" != *"y"* ]]; then
-exit
+	exit
 fi
 
 function progress(){
