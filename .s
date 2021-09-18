@@ -113,6 +113,6 @@ for x in "${toSync[@]}"; do
 	((p++))
 done
 echo "All Done!"
-ssh "$user"@"$ip" -i "$keyFile" -p $port "sh /scripts/phoneBackupEnd.sh"
+ssh "$user"@"$ip" -i "$keyFile" -p $port "sh /scripts/phoneBackupEnd.sh" &
 # clean up the remaining files.
 rm .tmpCreateDir .toCreateDirTree .toCreateDirTree2 .toCreateDirTreeFinal
