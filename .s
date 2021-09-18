@@ -38,6 +38,7 @@ unset IFS
 
 echo "Gathering list of directories for both the local device..."
 p=1; total="???"
+cleanFiles
 
 # Add the local directory tree to .tmpLocalFile file
 find $localSync -type f| sed "s/$(echo $localSync|sed 's/\//\\\//g')//g" | while read f; do
@@ -118,4 +119,4 @@ done
 echo "All Done!"
 ssh "$user"@"$ip" -i "$keyFile" -p $port "sh /scripts/phoneBackupEnd.sh" &
 # clean up the remaining files.
-rm .tmpCreateDir .toCreateDirTree .toCreateDirTree2 .toCreateDirTreeFinal
+cleanFiles
