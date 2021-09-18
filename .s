@@ -14,6 +14,7 @@ ssh "$user"@"$ip" -i "$keyFile" -p $port "lsblk"
 echo Continue?
 read shit
 if [[ "$shit" != *"y"* ]]; then
+	ssh "$user"@"$ip" -i "$keyFile" -p $port "sh /scripts/phoneBackupEnd.sh" &
 	exit
 fi
 
