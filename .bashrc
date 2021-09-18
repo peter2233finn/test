@@ -38,8 +38,8 @@ while true; do
                 ssh peter@89.100.27.100 -p 65021 -i ~/.ssh/id_rsa.nopass "/scripts/status"
                 read shit
 	elif [[ "$a" == "z" ]]; then
-		./.s "/storage/emulated/0/" "1"
-		./.s "/sdcard/" "2"
+		./.s "/storage/emulated/0/" "a"
+		./.s "/sdcard/" "b"
         elif [[ "$a" == "x" ]]; then
                 ./.c
                 read shit
