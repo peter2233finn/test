@@ -14,7 +14,7 @@ ssh "$user"@"$ip" -i "$keyFile" -p $port "lsblk"
 
 echo Continue?
 read shit
-if [[ "$shit" != "" ]]; then
+if [[ "$shit" != *"y"* ]]; then
 exit
 fi
 
