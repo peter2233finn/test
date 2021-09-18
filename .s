@@ -1,5 +1,5 @@
 remoteSync="/ff/phone/"
-localSync="/storage/emulated/0/"
+localSync="$*"
 ip="192.168.0.115"
 keyFile=".ssh/id_rsa.mainserver"
 user="sss"
