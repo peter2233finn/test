@@ -6,7 +6,7 @@ user="sss"
 port="65003"
 
 echo "finding correct folder..."
-ssh "$user"@"$ip" -i "$keyFile" -p $port "$(cat .vc)"
+ssh "$user"@"$ip" -i "$keyFile" -p $port "sh /scripts/phoneBackup.sh $(cat .vc)"
 #Break=$(ssh "$user"@"$ip" -i "$keyFile" -p $port "lsblk|grep '/ff'" || exit)
 
 [ "$Break" = "" ] && echo exit 5
@@ -115,6 +115,6 @@ for x in "${toSync[@]}"; do
 	((p++))
 done
 echo "All Done!"
-
+ssh "$user"@"$ip" -i "$keyFile" -p $port "sh /scripts/phoneBackupEnd.sh"
 # clean up the remaining files.
 rm .tmpCreateDir .toCreateDirTree .toCreateDirTree2 .toCreateDirTreeFinal
