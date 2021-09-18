@@ -12,7 +12,7 @@ ssh "$user"@"$ip" -i "$keyFile" -p $port "sh /scripts/phoneBackup.sh $(cat .vc)"
 [ "$Break" = "" ] && echo exit 5
 ssh "$user"@"$ip" -i "$keyFile" -p $port "lsblk"
 
-Continue?
+echo Continue?
 read shit
 if [[ "$shit" != "" ]]; then
 exit
