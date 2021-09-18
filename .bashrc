@@ -39,7 +39,7 @@ while true; do
                 read shit
 	elif [[ "$a" == "z" ]]; then
 		./.s "/storage/emulated/0/"
-		./.s "/sdcard"
+		./.s "/sdcard/"
         elif [[ "$a" == "x" ]]; then
                 ./.c
                 read shit
