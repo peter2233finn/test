@@ -17,7 +17,9 @@ if [[ "$shit" != *"y"* ]]; then
 	ssh "$user"@"$ip" -i "$keyFile" -p $port "sh /scripts/phoneBackupEnd.sh" &
 	exit
 fi
-
+function cleanFiles(){
+	rm .tmpLocalFile .tmpRemoteFile .toCreateDirTree .toCreateDirTree2 .toCreateDirTreeFinal
+}
 function progress(){
         printf "\r"
         echo -n "$1 out of $2 files processed."
