@@ -1,4 +1,3 @@
-# P1 Main Script
 lserver="192.168.0.18"
 router="192.168.1.2"
 ispr="192.168.0.1"
