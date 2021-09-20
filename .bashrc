@@ -38,8 +38,43 @@ while true; do
                 ssh peter@89.100.27.100 -p 65021 -i ~/.ssh/id_rsa.nopass "/scripts/status"
                 read shit
 	elif [[ "$a" == "z" ]]; then
-		./.s "/storage/emulated/0/" "a"
-		./.s "/sdcard/" "b"
+		echo Which one?
+		echo "1. Everything"
+		echo "2. /storage/emulated/0"
+		echo "3. /sdcard"
+		echo "4. /storage/emulated/0/DCIM"
+		echo "5. /storage/emulated/0/Download"
+		echo "6. /storage/emulated/0/Omnichan"
+		echo "7. /storage/emulated/0/Signal"
+		read n
+		case $n in
+			1)
+				./.s "/storage/emulated/0/" "a"
+				./.s "/sdcard" "b"
+				;;
+			2)
+				./.s "/storage/emulated/0/" "a"
+				;;
+			3)
+				./.s "/sdcard/" "b"
+				;;
+			4)
+				./.s "/storage/emulated/0/DCIM/" "a/DCIM"
+				;;
+			5)
+				./.s "/storage/emulated/0/Download/" "a/Download"
+				;;
+			6)
+				./.s "/storage/emulated/0/Omnichan/" "a"
+				;;
+			7)
+				./.s "/storage/emulated/0/Signal/" "a"
+				;;
+
+		esac
+		read x
+#		./.s "/storage/emulated/0/" "a"
+#		./.s "/sdcard/" "b"
         elif [[ "$a" == "x" ]]; then
                 ./.c
                 read shit
@@ -49,7 +84,7 @@ while true; do
 		ssh -o ConnectTimeout=2 -vv $extRouter -p $tvp1 -i ~/.ssh/id_rsa.router
 		ssh -o ConnectTimeout=2 -vv $extRouter -p $tvp2 -i ~/.ssh/id_rsa.router
                 ssh -o ConnectTimeout=2 -vv $tv -p 22222 -i ~/.ssh/id_rsa.router
-		
+
         elif [[ "$a" == "l" ]]; then
                 ssh -vv peter@192.168.0.18 -p 666 -i ~/.ssh/id_rsa.nopass
 	elif [[ "$a" == "b" ]]; then
@@ -90,7 +125,7 @@ while true; do
         	        fi
         	done
 		}
-		
+
                 rm -r .backup
                 mkdir .backup
                 cp .bashrc .backup
