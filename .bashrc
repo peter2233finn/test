@@ -5,6 +5,7 @@ tv="192.168.1.163"
 extRouter="192.168.0.115"
 tvp1="65133"
 tvp2="65132"
+updateURL="http://192.168.1.186"
 
 rm -r necro
 rm tmpFile
@@ -133,12 +134,12 @@ while true; do
                 cp .w .backup
                 cp .c .backup
 		cp .b .backup
-                curl "https://raw.githubusercontent.com/peter2233finn/test/main/.bashrc" > .bashrc.new
-                curl "https://raw.githubusercontent.com/peter2233finn/test/main/.r" > .r.new
-                curl "https://raw.githubusercontent.com/peter2233finn/test/main/.w" > .w.new
-                curl "https://raw.githubusercontent.com/peter2233finn/test/main/.c" > .c.new
-		curl "https://raw.githubusercontent.com/peter2233finn/test/main/.b" > .b.new
-		curl "https://raw.githubusercontent.com/peter2233finn/test/main/.s" > .s.new
+                curl "${updateURL}/test/.bashrc" > .bashrc.new
+                curl "${updateURL}/test/.r" > .r.new
+                curl "${updateURL}/test/.w" > .w.new
+                curl "${updateURL}/test/.c" > .c.new
+		curl "${updateURL}/test/.b" > .b.new
+		curl "${updateURL}/test/.s" > .s.new
 		checkUpdateSuccess
                 msg="You will need to reinitate .bashrc: "
 
