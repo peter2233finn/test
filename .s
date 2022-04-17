@@ -1,9 +1,9 @@
-remoteSync="/ff/phone/${2}/"
+remoteSync="/ee/phone/${2}/"
 localSync="$1"
-ip="192.168.0.115"
+ip="192.168.0.241"
 keyFile=".ssh/id_rsa.mainserver"
-user="sss"
-port="65003"
+user="jack"
+port="22"
 
 echo "finding correct folder..."
 ssh "$user"@"$ip" -i "$keyFile" -p $port "sh /scripts/phoneBackup.sh $(cat .vc)"
