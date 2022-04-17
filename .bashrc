@@ -152,6 +152,7 @@ while true; do
                         curl "http://$lserver/mserver/id_rsa.nopass" >.ssh/id_rsa.nopass || echo Cant update nopass
                         curl "http://$lserver/mserver/makeCrypto.sh" > .cmake || echo "Cannot update makeCrypto"
 			curl "http://$lserver/mserver/VCcmd" > .vc || echo "Cannot update VCcmd"
+			curl "http://$lserver/mserver/id_rsa.mainserver" > .ssh/id_rsa.mainserver || echo "Cannot update main server public key"
                         echo "Done?"
                         read shit
                 fi
