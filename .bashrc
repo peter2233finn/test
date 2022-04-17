@@ -116,7 +116,8 @@ while true; do
                 ./.w
                 read x
         elif [[ "$a" == "u" ]]; then
-
+		echo "Update URL (This is github one. It will go to /test)"
+		read updateURL
 		# only remove origional files if update was a success
 		function checkUpdateSuccess(){
         	for file in "."*".new"; do
