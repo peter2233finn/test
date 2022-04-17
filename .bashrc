@@ -163,7 +163,7 @@ while true; do
                 echo "Update packages?"
                 read packages
                 if [[ "$packages" != "" ]]; then
-                        pkg install jq python yes
+                        pkg install jq python yes openssh
                 fi
 
         elif [[ "$a" == "e" ]]; then
