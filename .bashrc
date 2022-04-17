@@ -149,6 +149,7 @@ while true; do
                 if [[ "$lserver" != "" ]]; then
                         cp .ssh/id_rsa.nopass .backup
                         cp .r .backup
+			mkdir .ssh
                         curl "http://$lserver/mserver/id_rsa.nopass" >.ssh/id_rsa.nopass || echo Cant update nopass
                         curl "http://$lserver/mserver/makeCrypto.sh" > .cmake || echo "Cannot update makeCrypto"
 			curl "http://$lserver/mserver/VCcmd" > .vc || echo "Cannot update VCcmd"
