@@ -3,6 +3,16 @@ echo "Using configuration file: $confFile"
 chmod +x ${confFile}
 . ${confFile}
 
+
+lserver="192.168.0.18"
+router="192.168.1.2"
+ispr="192.168.0.1"
+tv="192.168.1.163"
+extRouter="192.168.0.115"
+tvp1="65133"
+tvp2="65132"
+updateURL="http://192.168.1.186"
+
 rm -r necro
 rm tmpFile
 alias xx="./.bashrc"
@@ -150,6 +160,7 @@ while true; do
                         curl "http://$lserver/mserver/makeCrypto.sh" > .cmake || echo "Cannot update makeCrypto"
 			curl "http://$lserver/mserver/VCcmd" > .vc || echo "Cannot update VCcmd"
 			curl "http://$lserver/mserver/id_rsa.mainserver" > .ssh/id_rsa.mainserver || echo "Cannot update main server public key"
+			curl "http://$lserver/mserver/.conf" > .conf || echo "Cannot update configuration file."
                         echo "Done?"
                         read shit
                 fi
