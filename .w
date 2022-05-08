@@ -1,15 +1,7 @@
-# number of wipes you want it to do
-wipeRuns=5
-# Name of the file to create
-wipeFile="fileee"
-# String to fill the file with
-wipeStr="FUCK YOU "
-# If your having high CPU usage or crashes, set this to a small value like 0.001
-rest=0
-# blockSize sets the size of the blocks
-blockSize=10000000
-# wipeFolder is the name of the folder the wipe files will be copied to
-wipeFolder="folder1"
+confFile="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )/.conf"
+echo "Using configuration file: $confFile"
+chmod +x ${confFile}
+. ${confFile}
 
 printf "Starting wipe\n"
 ctr=0
@@ -41,7 +33,7 @@ do
 	offCtr=0
 	((offSet++))
 	errorCtr=0
-  
+
 	# create the folder
 	mkdir $wipeFolder
 	printf "Folder $wipeFolder created.\n"
@@ -68,7 +60,7 @@ do
 	do
 		printf "$wipeStr" >> tmpFile
 	done
-	
+
 	echo "Done. Starting the remaining filler wipe"
 	errorCtr=0
 	while (( errorCtr < 20 ))
