@@ -1,11 +1,7 @@
-lserver="192.168.0.18"
-router="192.168.1.2"
-ispr="192.168.0.1"
-tv="192.168.1.163"
-extRouter="192.168.0.115"
-tvp1="65133"
-tvp2="65132"
-updateURL="http://192.168.1.186"
+confFile="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )/.conf"
+echo "Using configuration file: $confFile"
+chmod +x ${confFile}
+. ${confFile}
 
 rm -r necro
 rm tmpFile
