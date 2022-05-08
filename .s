@@ -1,9 +1,9 @@
+confFile="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )/.conf"
+echo "Using configuration file: $confFile"
+chmod +x ${confFile}
+. ${confFile}
+
 remoteSync="/ee/phone/${2}/"
-localSync="$1"
-ip="192.168.0.241"
-keyFile=".ssh/id_rsa.mainserver"
-user="jack"
-port="22"
 
 echo "finding correct folder..."
 ssh "$user"@"$ip" -i "$keyFile" -p $port "sh /scripts/phoneBackup.sh $(cat .vc)"
@@ -19,12 +19,13 @@ if [[ "$shit" != *"y"* ]]; then
 fi
 function cleanFiles(){
 	rm .tmpLocalFile .tmpRemoteFile .toCreateDirTree .toCreateDirTree2 .toCreateDirTreeFinal
+	clear
 }
 function progress(){
         printf "\r"
         echo -n "$1 out of $2 files processed."
 }
-
+clear
 containsElement () {
   local e match="$1"
   shift
@@ -117,6 +118,7 @@ for x in "${toSync[@]}"; do
 	((p++))
 done
 echo "All Done!"
+read shit
 ssh "$user"@"$ip" -i "$keyFile" -p $port "sh /scripts/phoneBackupEnd.sh" &
 # clean up the remaining files.
 cleanFiles
