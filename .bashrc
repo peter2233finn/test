@@ -39,6 +39,7 @@ while true; do
 	echo "tu: stop torrent service"
 	echo "tt: start torrent service"
 	echo "tl: torrent list"
+	echo "ta: add a torrent (Magnet)"
 	echo "Slias 'fu' to force update from github"
 
         read a
@@ -133,6 +134,10 @@ while true; do
         elif [[ "$a" == "tl" ]]; then
 		ssh "$user"@"$ip" -i "$keyFile" -p $port "transmission-remote -l"
 		read shit
+        elif [[ "$a" == "ta" ]]; then
+		echo "Magnet link?"
+		read mag
+		ssh "$user"@"$ip" -i "$keyFile" -p $port "transmission-remote -a '${mag}'"
         elif [[ "$a" == "w" ]]; then
                 ./.w
                 read x
