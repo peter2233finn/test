@@ -113,8 +113,10 @@ p=1; total=${#toSync[@]}
 for x in "${toSync[@]}"; do
 	ldir="$(echo ${localSync}${x}|sed 's/\/ /\//g'|sed 's/\/\//\//g' )"
 	rdir=$(echo "${remoteSync}${x}"|awk 'NF{NF-=1}1' FS='/' OFS='/'|sed 's/\/ /\//g'|sed 's/\/\//\//g')
-	progress $p $total
-	scp -P "$port" -i "$keyFile" -r "$ldir" "$user"@"$ip":"'$rdir'" 2> /dev/null > /dev/null
+#	echo "local: $ldir renote: $rdir" 
+	rdir+="/"
+progress $p $total
+	scp -P "$port" -i "$keyFile" "$ldir" "$user"@"$ip":"$rdir" #2> /dev/null > /dev/null
 	((p++))
 done
 echo "All Done!"
