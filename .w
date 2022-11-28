@@ -1,13 +1,11 @@
-confFile="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )/.conf"
-echo "Using configuration file: $confFile"
-chmod +x ${confFile}
-. ${confFile}
+#confFile="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )/.conf"
+#echo "Using configuration file: $confFile"
+#chmod +x ${confFile}
+#. ${confFile}
 
 printf "Starting wipe\n"
 ctr=0
 offSet=0
-
-
 while (( ctr != wipeRuns ))
 do
 	# creates the temporary file
@@ -54,7 +52,7 @@ do
 
 	done
 	echo "Completed first round."
-	echo "Setting block to 1/100th the origional size
+	echo "Setting block to 1/100th the origional size"
 	printf "$wipeStr" > tmpFile
 	for i in $(seq 1 $(($blockSize/100)))
 	do
