@@ -1,7 +1,7 @@
-#confFile="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )/.conf"
-#echo "Using configuration file: $confFile"
-#chmod +x ${confFile}
-#. ${confFile}
+confFile="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )/.conf"
+echo "Using configuration file: $confFile"
+chmod +x ${confFile}
+. ${confFile}
 
 printf "Starting wipe\n"
 ctr=0
