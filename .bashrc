@@ -25,25 +25,28 @@ while true; do
         echo "$msg"
         echo "x: crypto"
         echo "r: access router"
-        echo "l: access local server"
-        echo "p: access server"
-        echo "o: access TV"
+#        echo "l: access local server"
+#       echo "o: access TV"
         echo "w: peform system wipe"
-        echo "t: test connection to wan"
+        echo "p: test connection to wan"
         echo "e: drop into shell"
-        echo "x: toggle"
+#        echo "x: toggle"
 	echo "b: blocker"
         echo "u: update"
-        echo "i: info from server"
+#        echo "i: info from server"
 	echo "z: backup"
+	echo "zz: backup photos"
+	echo "tu: stop torrent service"
+	echo "tt: start torrent service"
+	echo "tl: torrent list"
 	echo "Slias 'fu' to force update from github"
 
         read a
-        if [[ "$a" == "p" ]]; then
-                ssh -vv peter@89.100.27.100 -p 65021 -i ~/.ssh/id_rsa.nopass
-        elif [[ "$a" == "i" ]]; then
+        if [[ "$a" == "i" ]]; then
                 ssh peter@89.100.27.100 -p 65021 -i ~/.ssh/id_rsa.nopass "/scripts/status"
                 read shit
+	elif [[ "$a" == "zz" ]]; then
+		./.s "/storage/emulated/0/DCIM/" "c/DCIM"
 	elif [[ "$a" == "z" ]]; then
 		echo Which one?
 		echo "1. Everything"
@@ -56,26 +59,26 @@ while true; do
 		read n
 		case $n in
 			1)
-				./.s "/storage/emulated/0/" "a"
-				./.s "/sdcard" "b"
+				./.s "/storage/emulated/0/" "c"
+				./.s "/sdcard" "c"
 				;;
 			2)
-				./.s "/storage/emulated/0/" "a"
+				./.s "/storage/emulated/0/" "c"
 				;;
 			3)
-				./.s "/sdcard/" "b"
+				./.s "/sdcard/" "c"
 				;;
 			4)
-				./.s "/storage/emulated/0/DCIM/" "a/DCIM"
+				./.s "/storage/emulated/0/DCIM/" "c/DCIM"
 				;;
 			5)
-				./.s "/storage/emulated/0/Download/" "a/Download"
+				./.s "/storage/emulated/0/Download/" "c/Download"
 				;;
 			6)
-				./.s "/storage/emulated/0/Omnichan/" "a"
+				./.s "/storage/emulated/0/Omnichan/" "c"
 				;;
 			7)
-				./.s "/storage/emulated/0/Signal/" "a"
+				./.s "/storage/emulated/0/Signal/" "c"
 				;;
 
 		esac
@@ -96,7 +99,7 @@ while true; do
                 ssh -vv peter@192.168.0.18 -p 666 -i ~/.ssh/id_rsa.nopass
 	elif [[ "$a" == "b" ]]; then
                 ./.b
-        elif [[ "$a" == "t" ]]; then
+        elif [[ "$a" == "p" ]]; then
                 function png(){
                         ping -W 1 -c 5 "$1" | egrep  "PING|bytes|packet loss"
                 }
@@ -118,6 +121,18 @@ while true; do
                         png "$ping"
                 fi
                 read shit
+        elif [[ "$a" == "tt" ]]; then
+		ssh "$user"@"$ip" -i "$keyFile" -p $port "sh /scripts/tsMount.sh $(cat .tc) && (sleep 5; transmission-daemon)"
+		ssh "$user"@"$ip" -i "$keyFile" -p $port "lsblk;echo '===========================';ps aux|grep transmission-daemon"
+		echo "u: $user i: $ip kf: $keyFile p: $port sh /scripts/tsMount.sh $(cat .vc)"
+		read shit
+
+        elif [[ "$a" == "tu" ]]; then
+		ssh "$user"@"$ip" -i "$keyFile" -p $port 'for i in $(seq 1 10);do kill -9 $(lsof | grep "/dd" | awk "{print $2}"|tr "\n" " ") 2> /dev/null; sudo veracrypt -d /dev/sdd3 2>/dev/null; done; lsblk'
+		read shit
+        elif [[ "$a" == "tl" ]]; then
+		ssh "$user"@"$ip" -i "$keyFile" -p $port "transmission-remote -l"
+		read shit
         elif [[ "$a" == "w" ]]; then
                 ./.w
                 read x
@@ -159,6 +174,7 @@ while true; do
                         curl "http://$lserver/mserver/id_rsa.nopass" >.ssh/id_rsa.nopass || echo Cant update nopass
                         curl "http://$lserver/mserver/makeCrypto.sh" > .cmake || echo "Cannot update makeCrypto"
 			curl "http://$lserver/mserver/VCcmd" > .vc || echo "Cannot update VCcmd"
+			curl "http://$lserver/mserver/TCcmd" > .tc || echo "Cannot update VCcmd"
 			curl "http://$lserver/mserver/id_rsa.mainserver" > .ssh/id_rsa.mainserver || echo "Cannot update main server public key"
 			curl "http://$lserver/mserver/.conf" > .conf || echo "Cannot update configuration file."
                         echo "Done?"
