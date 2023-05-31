@@ -198,7 +198,7 @@ while true; do
                         install
                         ;;
                 e)
-                        tmux detach || exit
+                        tmux detach || break
                         ;;
         esac
 done
