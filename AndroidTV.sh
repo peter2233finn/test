@@ -149,6 +149,7 @@ function connect(){
 function install(){
         termux-change-repo
         pkg install dropbear
+         pkg install transmission
         mkdir .ssh
         
         # CHANGE THIS IS OTHER USER
