@@ -2,7 +2,7 @@
 torrentDir="/data/data/com.termux/files/home/storage/downloads/Downloaded/"
 torrentIncDir="/data/data/com.termux/files/home/storage/downloads/Downloading/"
 movieDir="/storage/emulated/0/Movies/"
-
+alias xx="./.bashrc"
 function checkactive(){
         z=$(ps aux|grep transmission|grep -v grep);[ -z "$z" ] && start
 }
@@ -149,12 +149,15 @@ function connect(){
 function install(){
         curl https://raw.githubusercontent.com/peter2233finn/test/main/AndroidTV.sh > .bashrc
         termux-change-repo
+        pkg upgrade
         pkg install dropbear
          pkg install transmission
+         read shit
         mkdir .ssh
         
         # CHANGE THIS IS OTHER USER
         echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQChiJgcoxsT4Ljov0a4I9NFcqwBJioE6kruPNmLFosLGjMpuWOwMgHYgzRqHsv1ILK+T9/JfnoQTcYt0MDsNYrWuwmb1NBq+90WRiN5JvjrNpK1OBrCnc5EGZVhO4cDfvlF8aikL2mvlPbwU2YbfFpW1OzPcCEbZxAgs2YXwtWtfC/EbGgmLGx/2oI1Zu7c2Z/rrFSLegRfXtC2UzuuI/P447M/s4+Py7apgDV33ZN87lTEAGMIF+Yi4s6zKaAMFO4D+s4wx+g9VK2i6m3jgZCg1DfIyJfJ5VzZRXBfvvcDnJRFA3CceXw4ADidNlixsQevyr0httpYBo63InhLnvXlv0IQa2Ht+nK01cGFiATmWCPGw5y0Te+XkgRdTeRqvfiaxjsIq+BbI4ESDtqURS4Ao8mQdmtai7Y5Svf4UWbbg9QUIFIqSk/nGk/UB1risWiFuLsxS6ScNqFEc6keNWEOKdAFAf7YbAg3khPTBmZud0DtQKI2ubYTjfVlBzwTsG8bGqpGyLVgr8kxfSbO7RJWOtvuhCb9EwvrCGTsO4wRWDxuYYi/gxnuu4Luswktg36QIly1DT6QgP7C8jvOs1IuOPS7TVQwLpKqmZ/i+UGvUwjr12YrRWmoTCr326uZieQqEjxhtHchUcwiAeouUaeO1BFg/RRACAbkz3YOoUU2JQ== peter@xxx" > .ssh/authorized_keys
+        read shit
 }
 
 while true; do
