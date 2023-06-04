@@ -147,6 +147,7 @@ function connect(){
 }
 
 function install(){
+        curl https://raw.githubusercontent.com/peter2233finn/test/main/AndroidTV.sh > .bashrc
         termux-change-repo
         pkg install dropbear
          pkg install transmission
