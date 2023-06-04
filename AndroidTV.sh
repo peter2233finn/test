@@ -1,6 +1,6 @@
 # notice the / at end of directory
-torrentDir="/data/data/com.termux/files/home/storage/downloads/Downloaded/"
-torrentIncDir="/data/data/com.termux/files/home/storage/downloads/Downloading/"
+torrentDir="/storage/emulated/0/Download/Downloaded/"
+torrentIncDir="/storage/emulated/0/Download/Downloading/"
 movieDir="/storage/emulated/0/Movies/"
 alias xx="./.bashrc"
 alias t="transmission-remote"
