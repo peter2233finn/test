@@ -3,7 +3,7 @@ torrentDir="/data/data/com.termux/files/home/storage/downloads/Downloaded/"
 torrentIncDir="/data/data/com.termux/files/home/storage/downloads/Downloading/"
 movieDir="/storage/emulated/0/Movies/"
 alias xx="./.bashrc"
-dropbear
+sshd
 function checkactive(){
         z=$(ps aux|grep transmission|grep -v grep);[ -z "$z" ] && start
         dropbear
@@ -124,7 +124,6 @@ function play(){
 fileSort
 x=0
 echo "query?"
-read q
 while read i; do
         array[$x]="$i"
         echo "$x:/ $i"|awk 'BEGIN { FS="/"} ; {print $1 " " $NF}'
